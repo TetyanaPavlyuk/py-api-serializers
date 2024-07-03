@@ -100,3 +100,8 @@ class MovieSessionListSerializer(serializers.ModelSerializer):
             "cinema_hall_name",
             "cinema_hall_capacity",
         ]
+
+
+class MovieSessionRetrieveSerializer(MovieSessionSerializer):
+    movie = MovieRetrieveSerializer(many=False, read_only=True)
+    cinema_hall = CinemaHallSerializer(many=False, read_only=True)
