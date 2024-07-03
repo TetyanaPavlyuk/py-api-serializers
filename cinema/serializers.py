@@ -6,8 +6,6 @@ from cinema.models import (
     CinemaHall,
     Movie,
     MovieSession,
-    Order,
-    Ticket,
 )
 
 
@@ -86,7 +84,7 @@ class MovieSessionListSerializer(serializers.ModelSerializer):
         source="cinema_hall.name",
         read_only=True
     )
-    cinema_hall_capacity = serializers.CharField(
+    cinema_hall_capacity = serializers.IntegerField(
         source="cinema_hall.capacity",
         read_only=True
     )
@@ -103,5 +101,5 @@ class MovieSessionListSerializer(serializers.ModelSerializer):
 
 
 class MovieSessionRetrieveSerializer(MovieSessionSerializer):
-    movie = MovieRetrieveSerializer(many=False, read_only=True)
+    movie = MovieListSerializer(many=False, read_only=True)
     cinema_hall = CinemaHallSerializer(many=False, read_only=True)
